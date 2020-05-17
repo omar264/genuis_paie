@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
+using System.Diagnostics;
 
 namespace GENIUSPAIE.Salaries
 {
@@ -327,7 +328,7 @@ listeUN[i].UN_Code));
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                        Trace.TraceError(ex.Message);
                     }
                     finally
                     {
