@@ -38,6 +38,8 @@
             this.I = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.plFicheSalarie = new System.Windows.Forms.Panel();
             this.plPaie = new System.Windows.Forms.Panel();
+            this.salaireHoraireValue = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.cbxBultMod = new System.Windows.Forms.ComboBox();
             this.label53 = new System.Windows.Forms.Label();
             this.cbxUnite = new System.Windows.Forms.ComboBox();
@@ -45,11 +47,8 @@
             this.label51 = new System.Windows.Forms.Label();
             this.cbxPerTem = new System.Windows.Forms.ComboBox();
             this.label50 = new System.Windows.Forms.Label();
-            this.cbxHoraire = new System.Windows.Forms.ComboBox();
             this.label43 = new System.Windows.Forms.Label();
-            this.cbxSalHor = new System.Windows.Forms.ComboBox();
             this.label49 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label48 = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label47 = new System.Windows.Forms.Label();
@@ -158,8 +157,7 @@
             this.treeListBand3 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.treeListBand4 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.treeListBand5 = new DevExpress.XtraTreeList.Columns.TreeListBand();
-            this.button5 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.salaireBase = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -211,6 +209,7 @@
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
+            this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(716, 264, 650, 400);
             this.layoutControl1.Root = this.Root;
             this.layoutControl1.Size = new System.Drawing.Size(658, 512);
             this.layoutControl1.TabIndex = 0;
@@ -343,7 +342,8 @@
             // 
             // plPaie
             // 
-            this.plPaie.Controls.Add(this.richTextBox1);
+            this.plPaie.Controls.Add(this.salaireBase);
+            this.plPaie.Controls.Add(this.salaireHoraireValue);
             this.plPaie.Controls.Add(this.button5);
             this.plPaie.Controls.Add(this.cbxBultMod);
             this.plPaie.Controls.Add(this.label53);
@@ -352,11 +352,8 @@
             this.plPaie.Controls.Add(this.label51);
             this.plPaie.Controls.Add(this.cbxPerTem);
             this.plPaie.Controls.Add(this.label50);
-            this.plPaie.Controls.Add(this.cbxHoraire);
             this.plPaie.Controls.Add(this.label43);
-            this.plPaie.Controls.Add(this.cbxSalHor);
             this.plPaie.Controls.Add(this.label49);
-            this.plPaie.Controls.Add(this.comboBox1);
             this.plPaie.Controls.Add(this.label48);
             this.plPaie.Controls.Add(this.checkBox2);
             this.plPaie.Controls.Add(this.label47);
@@ -377,6 +374,23 @@
             this.plPaie.TabIndex = 4;
             this.plPaie.Visible = false;
             this.plPaie.Paint += new System.Windows.Forms.PaintEventHandler(this.plPaie_Paint);
+            // 
+            // salaireHoraireValue
+            // 
+            this.salaireHoraireValue.Location = new System.Drawing.Point(120, 174);
+            this.salaireHoraireValue.Name = "salaireHoraireValue";
+            this.salaireHoraireValue.Size = new System.Drawing.Size(122, 20);
+            this.salaireHoraireValue.TabIndex = 99;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(324, 392);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 98;
+            this.button5.Text = "Sauvgarder";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // cbxBultMod
             // 
@@ -452,16 +466,6 @@
             this.label50.TabIndex = 91;
             this.label50.Text = "Horaire";
             // 
-            // cbxHoraire
-            // 
-            this.cbxHoraire.FormattingEnabled = true;
-            this.cbxHoraire.Items.AddRange(new object[] {
-            "NBHJMOIS"});
-            this.cbxHoraire.Location = new System.Drawing.Point(120, 247);
-            this.cbxHoraire.Name = "cbxHoraire";
-            this.cbxHoraire.Size = new System.Drawing.Size(121, 21);
-            this.cbxHoraire.TabIndex = 90;
-            // 
             // label43
             // 
             this.label43.AutoSize = true;
@@ -471,32 +475,14 @@
             this.label43.TabIndex = 89;
             this.label43.Text = "Salaire horaire";
             // 
-            // cbxSalHor
-            // 
-            this.cbxSalHor.FormattingEnabled = true;
-            this.cbxSalHor.Items.AddRange(new object[] {
-            "SAl_Gril"});
-            this.cbxSalHor.Location = new System.Drawing.Point(120, 173);
-            this.cbxSalHor.Name = "cbxSalHor";
-            this.cbxSalHor.Size = new System.Drawing.Size(121, 21);
-            this.cbxSalHor.TabIndex = 88;
-            // 
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(280, 119);
+            this.label49.Location = new System.Drawing.Point(247, 122);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(31, 13);
+            this.label49.Size = new System.Drawing.Size(78, 13);
             this.label49.TabIndex = 87;
-            this.label49.Text = "Type";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(326, 114);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 86;
+            this.label49.Text = "salaire de base";
             // 
             // label48
             // 
@@ -1538,23 +1524,12 @@
             this.treeListBand5.Caption = "treeListBand5";
             this.treeListBand5.Name = "treeListBand5";
             // 
-            // button5
+            // salaireBase
             // 
-            this.button5.Location = new System.Drawing.Point(324, 392);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 98;
-            this.button5.Text = "Sauvgarder";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(305, 316);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(83, 44);
-            this.richTextBox1.TabIndex = 99;
-            this.richTextBox1.Text = "";
+            this.salaireBase.Location = new System.Drawing.Point(330, 119);
+            this.salaireBase.Name = "salaireBase";
+            this.salaireBase.Size = new System.Drawing.Size(122, 20);
+            this.salaireBase.TabIndex = 100;
             // 
             // frmFicheSalarie
             // 
@@ -1707,11 +1682,8 @@
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.ComboBox cbxPerTem;
         private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.ComboBox cbxHoraire;
         private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.ComboBox cbxSalHor;
         private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Label label47;
@@ -1754,6 +1726,7 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ComboBox cbxBultMod;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.TextBox salaireHoraireValue;
+        private System.Windows.Forms.TextBox salaireBase;
     }
 }

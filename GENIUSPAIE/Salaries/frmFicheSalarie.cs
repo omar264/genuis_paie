@@ -68,6 +68,7 @@ namespace GENIUSPAIE.Salaries
                 cbDépartement.SelectedValue = _salarie.DP_Code ?? "";
                 cbService.SelectedValue = _salarie.SE_Code ?? "";
                 cbUnité.SelectedValue = _salarie.UN_Code ?? "";
+                salaireBase.Text = _salarie.SalaireDeBase.ToString();
 
             }
             catch (Exception ex)
@@ -323,7 +324,13 @@ listeUN[i].UN_Code));
                     {
                         PdfWriter.GetInstance(doc, new FileStream(sfd.FileName, FileMode.Create));
                         doc.Open();
-                        doc.Add(new iTextSharp.text.Paragraph(richTextBox1.Text));
+                        doc.Add(new iTextSharp.text.Paragraph(txtMatricule.Text + " " + txtNom.Text + " " + txtPrénom.Text));
+                        doc.Add(new iTextSharp.text.Paragraph("Salaire mensuel : " + calculerSalaireMensuel(salaireHoraireValue.Text)));
+                        doc.Add(new iTextSharp.text.Paragraph("MAticule : " + txtMatricule.Text));
+                        doc.Add(new iTextSharp.text.Paragraph("cnss : " + txtNumSecS.Text));
+                        doc.Add(new iTextSharp.text.Paragraph("cnss : " + salaireBase.Text));
+
+
                     }
                     catch (Exception ex)
                     {
@@ -336,6 +343,23 @@ listeUN[i].UN_Code));
                     }
                 }
             }
+        }
+
+        private String calculerSalaireMensuel(String salaireHoraire)
+        {
+            try
+            {
+                decimal salaireHoraireDecimal = decimal.Parse(salaireHoraire);
+                decimal salaireMensuleDecimal = salaireHoraireDecimal * 8 * 20;
+                Trace.TraceInformation(salaireMensuleDecimal.ToString("0.00"));
+                return salaireMensuleDecimal.ToString("0.00");
+            }
+            catch(Exception ex)
+            {
+                Trace.TraceError(ex.Message);
+            }
+            throw new Exception("Impossible de calculer le salaire mensuel");
+            //return "";
         }
     }
 }
