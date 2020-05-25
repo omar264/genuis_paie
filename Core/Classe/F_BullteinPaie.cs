@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace Core.Classe
 {
-    class F_BullteinPaie
+    public class F_BullteinPaie
     {
         [Key]
-     public int BP_NO { get; set; }
-
-        [StringLength(69)]
-        public int mois { get; set; }
+        public int BP_NO { get; set; }
 
         public DateTime? SA_DateSortie{ get; set; }   
+        public decimal? salaireBase { get; set; } 
+        public float? primes { get; set; }
+        public float retenueCnss { get; set; }
+        public float retenueIrpp { get; set; }
+
     }
 }

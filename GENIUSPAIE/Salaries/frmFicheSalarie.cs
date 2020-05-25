@@ -24,6 +24,7 @@ namespace GENIUSPAIE.Salaries
         #region Fields 
         DbSage db = new DbSage();
         private F_Salarie _salarie = null;
+        private F_BullteinPaie _BullteinPaie = null;
         private Mode _mode = Mode.Ajouter;
         private Control _currentPanel = new Panel();
 
@@ -68,8 +69,10 @@ namespace GENIUSPAIE.Salaries
                 cbDépartement.SelectedValue = _salarie.DP_Code ?? "";
                 cbService.SelectedValue = _salarie.SE_Code ?? "";
                 cbUnité.SelectedValue = _salarie.UN_Code ?? "";
-                salaireBase.Text = _salarie.SalaireDeBase.ToString();
-
+                txtsalaireBase.Text = _salarie.SalaireDeBase.ToString();
+                txtPrimes.Text = _salarie.primes.ToString();
+                txtCnss.Text = _salarie.retenueCnss.ToString();
+                txtIrpp.Text = _salarie.retenueIrpp.ToString();
             }
             catch (Exception ex)
             {
@@ -86,6 +89,7 @@ namespace GENIUSPAIE.Salaries
             try
             {
                 int departement = 0;
+               
 
                 F_Salarie salarie = new F_Salarie()
                 {
@@ -102,7 +106,7 @@ namespace GENIUSPAIE.Salaries
                     SA_DateLivraisonCin = Convert.ToDateTime(dtpDateLv.EditValue),
                     SA_Adresse = txtAdresse.Text,
                     SA_ComplementAdresse = txtComplement.Text,
-                    SA_CodePostal = txtCodePostale.Text ,
+                    SA_CodePostal = txtCodePostale.Text,
                     SA_Telephone = txtTelephone.Text,
                     SA_Banque = txtBanque.Text,
                     SA_Guichet = txtGuichet.Text,
@@ -114,8 +118,15 @@ namespace GENIUSPAIE.Salaries
                     SE_Code = cbService.SelectedIndex == -1 ? "" : Convert.ToString(cbService.SelectedValue),
                     UN_Code = cbUnité.SelectedIndex == -1 ? "" : Convert.ToString(cbUnité.SelectedValue),
                     cbMarq = _mode == Mode.Modifier ? _salarie.cbMarq : 0,
+                    SalaireDeBase = Convert.ToDecimal(txtsalaireBase.Text),
+                    primes = Convert.ToDecimal(txtPrimes.Text) ,
+                    /*SA_DateSortie =Convert.ToDateTime(dateSortie.EditValue),*/
+                    retenueCnss= Convert.ToDecimal(txtPrimes.Text),
+                    retenueIrpp = Convert.ToDecimal(txtIrpp.Text),
 
 
+
+                    
                 };
                 using (DbSage db = new DbSage())
                 {
@@ -189,7 +200,7 @@ namespace GENIUSPAIE.Salaries
                 else if (Convert.ToInt32(node.FocusedNode.Tag) == 3)
                     SwitchPanel(plPoste);
                 else if (Convert.ToInt32(node.FocusedNode.Tag) == 4)
-                    SwitchPanel(plPaie);
+                    SwitchPanel(v);
 
             }
             catch (Exception)
@@ -213,7 +224,7 @@ namespace GENIUSPAIE.Salaries
                 else if (Convert.ToInt32(node.Tag) == 3)
                     SwitchPanel(plPoste);
                 else if (Convert.ToInt32(node.Tag) == 4)
-                    SwitchPanel(plPaie);
+                    SwitchPanel(v);
 
             }
             catch (Exception)
@@ -324,11 +335,19 @@ listeUN[i].UN_Code));
                     {
                         PdfWriter.GetInstance(doc, new FileStream(sfd.FileName, FileMode.Create));
                         doc.Open();
+                        doc.Add(new iTextSharp.text.Paragraph( "                           Bulltein de paie" ));
+                        doc.Add(new iTextSharp.text.Paragraph("STE:"));
+                        doc.Add(new iTextSharp.text.Paragraph("CNSS:"));
                         doc.Add(new iTextSharp.text.Paragraph(txtMatricule.Text + " " + txtNom.Text + " " + txtPrénom.Text));
-                        doc.Add(new iTextSharp.text.Paragraph("Salaire mensuel : " + calculerSalaireMensuel(salaireHoraireValue.Text)));
-                        doc.Add(new iTextSharp.text.Paragraph("MAticule : " + txtMatricule.Text));
-                        doc.Add(new iTextSharp.text.Paragraph("cnss : " + txtNumSecS.Text));
-                        doc.Add(new iTextSharp.text.Paragraph("cnss : " + salaireBase.Text));
+                        doc.Add(new iTextSharp.text.Paragraph("cnss : " + txtNumSecS.Text ));
+                        doc.Add(new iTextSharp.text.Paragraph(cbSituationF.Text));
+                        doc.Add(new iTextSharp.text.Paragraph("salaire de base : " + txtsalaireBase.Text));
+                        doc.Add(new iTextSharp.text.Paragraph("retnue cnss : " +txtCnss));
+                        doc.Add(new iTextSharp.text.Paragraph("retnue irrp : " + txtIrpp));
+                        doc.Add(new iTextSharp.text.Paragraph("total brute : " + txtTotalBrute));
+                        doc.Add(new iTextSharp.text.Paragraph("total imposable: " + txtTotalImposable));
+
+                        doc.Add(new iTextSharp.text.Paragraph("net à payer : " + calculerSalaireMensuel(salaireHoraireValue.Text)));
 
 
                     }
@@ -344,15 +363,39 @@ listeUN[i].UN_Code));
                 }
             }
         }
+        private void calculer()
+        {
+            try
+            {
+                decimal c = Convert.ToDecimal(txtTotalBrute.Text);
+                decimal c2 = Convert.ToDecimal(txtCnss.Text);
+                decimal c3 = Convert.ToDecimal(txtIrpp.Text);
 
+                // txtTotalBrute.Text = txtsalaireBase.Text + txtCnss.Text;
+                txtTotalBrute.Text = txtsalaireBase.Text + txtPrimes.Text;
+
+                decimal TotalImposable = decimal.Parse(txtTotalImposable.Text);
+                TotalImposable = c + c2;
+              //  txtNetPayer.Text = txtTotalImposable.Text-c3;
+
+            }
+            catch (Exception ex)
+            {
+                Trace.TraceError(ex.Message);
+            }
+        }
         private String calculerSalaireMensuel(String salaireHoraire)
         {
             try
             {
+
+
                 decimal salaireHoraireDecimal = decimal.Parse(salaireHoraire);
                 decimal salaireMensuleDecimal = salaireHoraireDecimal * 8 * 20;
                 Trace.TraceInformation(salaireMensuleDecimal.ToString("0.00"));
                 return salaireMensuleDecimal.ToString("0.00");
+                
+                
             }
             catch(Exception ex)
             {
@@ -360,6 +403,26 @@ listeUN[i].UN_Code));
             }
             throw new Exception("Impossible de calculer le salaire mensuel");
             //return "";
+        }
+
+        private void txtPrimes_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label54_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtsalaireBase_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btncalculer_Click(object sender, EventArgs e)
+        {
+            calculer();
         }
     }
 }

@@ -37,11 +37,26 @@
             this.trvSalarie = new DevExpress.XtraTreeList.TreeList();
             this.I = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.plFicheSalarie = new System.Windows.Forms.Panel();
-            this.plPaie = new System.Windows.Forms.Panel();
+            this.v = new System.Windows.Forms.Panel();
+            this.btncalculer = new System.Windows.Forms.Button();
+            this.label58 = new System.Windows.Forms.Label();
+            this.dateSortie = new DevExpress.XtraEditors.DateEdit();
+            this.label57 = new System.Windows.Forms.Label();
+            this.txtNetPayer = new System.Windows.Forms.TextBox();
+            this.label56 = new System.Windows.Forms.Label();
+            this.txtTotalImposable = new System.Windows.Forms.TextBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.txtTotalBrute = new System.Windows.Forms.TextBox();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtIrpp = new System.Windows.Forms.TextBox();
+            this.txtCnss = new System.Windows.Forms.TextBox();
+            this.label54 = new System.Windows.Forms.Label();
+            this.txtPrimes = new System.Windows.Forms.TextBox();
+            this.txtsalaireBase = new System.Windows.Forms.TextBox();
             this.salaireHoraireValue = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.cbxBultMod = new System.Windows.Forms.ComboBox();
-            this.label53 = new System.Windows.Forms.Label();
             this.cbxUnite = new System.Windows.Forms.ComboBox();
             this.label52 = new System.Windows.Forms.Label();
             this.label51 = new System.Windows.Forms.Label();
@@ -55,7 +70,6 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.dateFin = new DevExpress.XtraEditors.DateEdit();
             this.label36 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
             this.dateDeb = new DevExpress.XtraEditors.DateEdit();
             this.label42 = new System.Windows.Forms.Label();
             this.separatorControl10 = new DevExpress.XtraEditors.SeparatorControl();
@@ -157,13 +171,14 @@
             this.treeListBand3 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.treeListBand4 = new DevExpress.XtraTreeList.Columns.TreeListBand();
             this.treeListBand5 = new DevExpress.XtraTreeList.Columns.TreeListBand();
-            this.salaireBase = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trvSalarie)).BeginInit();
             this.plFicheSalarie.SuspendLayout();
-            this.plPaie.SuspendLayout();
+            this.v.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateSortie.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateSortie.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFin.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateDeb.Properties.CalendarTimeProperties)).BeginInit();
@@ -330,7 +345,7 @@
             // plFicheSalarie
             // 
             this.plFicheSalarie.BackColor = System.Drawing.Color.White;
-            this.plFicheSalarie.Controls.Add(this.plPaie);
+            this.plFicheSalarie.Controls.Add(this.v);
             this.plFicheSalarie.Controls.Add(this.plCoordonnee);
             this.plFicheSalarie.Controls.Add(this.plEtatCivile);
             this.plFicheSalarie.Controls.Add(this.plPoste);
@@ -340,40 +355,191 @@
             this.plFicheSalarie.Size = new System.Drawing.Size(487, 441);
             this.plFicheSalarie.TabIndex = 4;
             // 
-            // plPaie
+            // v
             // 
-            this.plPaie.Controls.Add(this.salaireBase);
-            this.plPaie.Controls.Add(this.salaireHoraireValue);
-            this.plPaie.Controls.Add(this.button5);
-            this.plPaie.Controls.Add(this.cbxBultMod);
-            this.plPaie.Controls.Add(this.label53);
-            this.plPaie.Controls.Add(this.cbxUnite);
-            this.plPaie.Controls.Add(this.label52);
-            this.plPaie.Controls.Add(this.label51);
-            this.plPaie.Controls.Add(this.cbxPerTem);
-            this.plPaie.Controls.Add(this.label50);
-            this.plPaie.Controls.Add(this.label43);
-            this.plPaie.Controls.Add(this.label49);
-            this.plPaie.Controls.Add(this.label48);
-            this.plPaie.Controls.Add(this.checkBox2);
-            this.plPaie.Controls.Add(this.label47);
-            this.plPaie.Controls.Add(this.checkBox1);
-            this.plPaie.Controls.Add(this.dateFin);
-            this.plPaie.Controls.Add(this.label36);
-            this.plPaie.Controls.Add(this.label27);
-            this.plPaie.Controls.Add(this.dateDeb);
-            this.plPaie.Controls.Add(this.label42);
-            this.plPaie.Controls.Add(this.separatorControl10);
-            this.plPaie.Controls.Add(this.separatorControl11);
-            this.plPaie.Controls.Add(this.label44);
-            this.plPaie.Controls.Add(this.label45);
-            this.plPaie.Controls.Add(this.label46);
-            this.plPaie.Location = new System.Drawing.Point(10, 3);
-            this.plPaie.Name = "plPaie";
-            this.plPaie.Size = new System.Drawing.Size(477, 438);
-            this.plPaie.TabIndex = 4;
-            this.plPaie.Visible = false;
-            this.plPaie.Paint += new System.Windows.Forms.PaintEventHandler(this.plPaie_Paint);
+            this.v.Controls.Add(this.btncalculer);
+            this.v.Controls.Add(this.label58);
+            this.v.Controls.Add(this.dateSortie);
+            this.v.Controls.Add(this.label57);
+            this.v.Controls.Add(this.txtNetPayer);
+            this.v.Controls.Add(this.label56);
+            this.v.Controls.Add(this.txtTotalImposable);
+            this.v.Controls.Add(this.label55);
+            this.v.Controls.Add(this.txtTotalBrute);
+            this.v.Controls.Add(this.label53);
+            this.v.Controls.Add(this.label27);
+            this.v.Controls.Add(this.txtIrpp);
+            this.v.Controls.Add(this.txtCnss);
+            this.v.Controls.Add(this.label54);
+            this.v.Controls.Add(this.txtPrimes);
+            this.v.Controls.Add(this.txtsalaireBase);
+            this.v.Controls.Add(this.salaireHoraireValue);
+            this.v.Controls.Add(this.button5);
+            this.v.Controls.Add(this.cbxBultMod);
+            this.v.Controls.Add(this.cbxUnite);
+            this.v.Controls.Add(this.label52);
+            this.v.Controls.Add(this.label51);
+            this.v.Controls.Add(this.cbxPerTem);
+            this.v.Controls.Add(this.label50);
+            this.v.Controls.Add(this.label43);
+            this.v.Controls.Add(this.label49);
+            this.v.Controls.Add(this.label48);
+            this.v.Controls.Add(this.checkBox2);
+            this.v.Controls.Add(this.label47);
+            this.v.Controls.Add(this.checkBox1);
+            this.v.Controls.Add(this.dateFin);
+            this.v.Controls.Add(this.label36);
+            this.v.Controls.Add(this.dateDeb);
+            this.v.Controls.Add(this.label42);
+            this.v.Controls.Add(this.separatorControl10);
+            this.v.Controls.Add(this.separatorControl11);
+            this.v.Controls.Add(this.label44);
+            this.v.Controls.Add(this.label45);
+            this.v.Controls.Add(this.label46);
+            this.v.Location = new System.Drawing.Point(10, 3);
+            this.v.Name = "v";
+            this.v.Size = new System.Drawing.Size(477, 438);
+            this.v.TabIndex = 4;
+            this.v.Visible = false;
+            this.v.Paint += new System.Windows.Forms.PaintEventHandler(this.plPaie_Paint);
+            // 
+            // btncalculer
+            // 
+            this.btncalculer.Location = new System.Drawing.Point(132, 284);
+            this.btncalculer.Name = "btncalculer";
+            this.btncalculer.Size = new System.Drawing.Size(75, 23);
+            this.btncalculer.TabIndex = 115;
+            this.btncalculer.Text = "calculer";
+            this.btncalculer.UseVisualStyleBackColor = true;
+            this.btncalculer.Click += new System.EventHandler(this.btncalculer_Click);
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(23, 98);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(73, 13);
+            this.label58.TabIndex = 114;
+            this.label58.Text = "Date de sortie";
+            // 
+            // dateSortie
+            // 
+            this.dateSortie.EditValue = null;
+            this.dateSortie.Location = new System.Drawing.Point(121, 91);
+            this.dateSortie.Name = "dateSortie";
+            this.dateSortie.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.dateSortie.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateSortie.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateSortie.Size = new System.Drawing.Size(121, 20);
+            this.dateSortie.TabIndex = 113;
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(247, 289);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(62, 13);
+            this.label57.TabIndex = 112;
+            this.label57.Text = "Net à payer";
+            // 
+            // txtNetPayer
+            // 
+            this.txtNetPayer.Location = new System.Drawing.Point(324, 284);
+            this.txtNetPayer.Name = "txtNetPayer";
+            this.txtNetPayer.Size = new System.Drawing.Size(122, 20);
+            this.txtNetPayer.TabIndex = 111;
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(248, 254);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(71, 13);
+            this.label56.TabIndex = 110;
+            this.label56.Text = "total impsable";
+            // 
+            // txtTotalImposable
+            // 
+            this.txtTotalImposable.Location = new System.Drawing.Point(324, 247);
+            this.txtTotalImposable.Name = "txtTotalImposable";
+            this.txtTotalImposable.Size = new System.Drawing.Size(122, 20);
+            this.txtTotalImposable.TabIndex = 109;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(23, 252);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(54, 13);
+            this.label55.TabIndex = 108;
+            this.label55.Text = "total brute";
+            // 
+            // txtTotalBrute
+            // 
+            this.txtTotalBrute.Location = new System.Drawing.Point(120, 244);
+            this.txtTotalBrute.Name = "txtTotalBrute";
+            this.txtTotalBrute.Size = new System.Drawing.Size(122, 20);
+            this.txtTotalBrute.TabIndex = 107;
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(252, 208);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(63, 13);
+            this.label53.TabIndex = 106;
+            this.label53.Text = "retenue irpp";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(23, 211);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(68, 13);
+            this.label27.TabIndex = 105;
+            this.label27.Text = "retenue cnss";
+            // 
+            // txtIrpp
+            // 
+            this.txtIrpp.Location = new System.Drawing.Point(325, 205);
+            this.txtIrpp.Name = "txtIrpp";
+            this.txtIrpp.Size = new System.Drawing.Size(122, 20);
+            this.txtIrpp.TabIndex = 104;
+            // 
+            // txtCnss
+            // 
+            this.txtCnss.Location = new System.Drawing.Point(120, 208);
+            this.txtCnss.Name = "txtCnss";
+            this.txtCnss.Size = new System.Drawing.Size(122, 20);
+            this.txtCnss.TabIndex = 103;
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(271, 179);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(38, 13);
+            this.label54.TabIndex = 102;
+            this.label54.Text = "Primes";
+            this.label54.Click += new System.EventHandler(this.label54_Click);
+            // 
+            // txtPrimes
+            // 
+            this.txtPrimes.Location = new System.Drawing.Point(322, 172);
+            this.txtPrimes.Name = "txtPrimes";
+            this.txtPrimes.Size = new System.Drawing.Size(122, 20);
+            this.txtPrimes.TabIndex = 101;
+            this.txtPrimes.TextChanged += new System.EventHandler(this.txtPrimes_TextChanged);
+            // 
+            // txtsalaireBase
+            // 
+            this.txtsalaireBase.Location = new System.Drawing.Point(330, 119);
+            this.txtsalaireBase.Name = "txtsalaireBase";
+            this.txtsalaireBase.Size = new System.Drawing.Size(122, 20);
+            this.txtsalaireBase.TabIndex = 100;
+            this.txtsalaireBase.TextChanged += new System.EventHandler(this.txtsalaireBase_TextChanged);
             // 
             // salaireHoraireValue
             // 
@@ -404,15 +570,6 @@
             this.cbxBultMod.Size = new System.Drawing.Size(121, 21);
             this.cbxBultMod.TabIndex = 97;
             // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(108, 359);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(19, 13);
-            this.label53.TabIndex = 96;
-            this.label53.Text = "de";
-            // 
             // cbxUnite
             // 
             this.cbxUnite.AutoCompleteCustomSource.AddRange(new string[] {
@@ -420,7 +577,7 @@
             "10-heure",
             "12-heure"});
             this.cbxUnite.FormattingEnabled = true;
-            this.cbxUnite.Location = new System.Drawing.Point(120, 315);
+            this.cbxUnite.Location = new System.Drawing.Point(132, 376);
             this.cbxUnite.Name = "cbxUnite";
             this.cbxUnite.Size = new System.Drawing.Size(121, 21);
             this.cbxUnite.TabIndex = 95;
@@ -429,7 +586,7 @@
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(8, 318);
+            this.label52.Location = new System.Drawing.Point(33, 387);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(78, 13);
             this.label52.TabIndex = 94;
@@ -438,7 +595,7 @@
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(7, 288);
+            this.label51.Location = new System.Drawing.Point(23, 357);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(102, 13);
             this.label51.TabIndex = 93;
@@ -452,7 +609,7 @@
             "16mois",
             "18mois"});
             this.cbxPerTem.FormattingEnabled = true;
-            this.cbxPerTem.Location = new System.Drawing.Point(120, 282);
+            this.cbxPerTem.Location = new System.Drawing.Point(132, 349);
             this.cbxPerTem.Name = "cbxPerTem";
             this.cbxPerTem.Size = new System.Drawing.Size(121, 21);
             this.cbxPerTem.TabIndex = 92;
@@ -460,7 +617,7 @@
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(7, 255);
+            this.label50.Location = new System.Drawing.Point(23, 312);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(41, 13);
             this.label50.TabIndex = 91;
@@ -478,7 +635,7 @@
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(247, 122);
+            this.label49.Location = new System.Drawing.Point(252, 123);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(78, 13);
             this.label49.TabIndex = 87;
@@ -542,15 +699,6 @@
             this.label36.TabIndex = 79;
             this.label36.Text = "Date de fin";
             // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(23, 359);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(78, 13);
-            this.label27.TabIndex = 77;
-            this.label27.Text = "Paie en cours :";
-            // 
             // dateDeb
             // 
             this.dateDeb.EditValue = null;
@@ -569,7 +717,7 @@
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label42.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(200)))));
-            this.label42.Location = new System.Drawing.Point(3, 229);
+            this.label42.Location = new System.Drawing.Point(17, 289);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(55, 15);
             this.label42.TabIndex = 73;
@@ -578,7 +726,7 @@
             // separatorControl10
             // 
             this.separatorControl10.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(200)))));
-            this.separatorControl10.Location = new System.Drawing.Point(54, 223);
+            this.separatorControl10.Location = new System.Drawing.Point(74, 303);
             this.separatorControl10.Name = "separatorControl10";
             this.separatorControl10.Size = new System.Drawing.Size(400, 28);
             this.separatorControl10.TabIndex = 72;
@@ -586,7 +734,7 @@
             // separatorControl11
             // 
             this.separatorControl11.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(200)))));
-            this.separatorControl11.Location = new System.Drawing.Point(87, 77);
+            this.separatorControl11.Location = new System.Drawing.Point(86, 65);
             this.separatorControl11.Name = "separatorControl11";
             this.separatorControl11.Size = new System.Drawing.Size(360, 28);
             this.separatorControl11.TabIndex = 45;
@@ -596,7 +744,7 @@
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label44.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(119)))), ((int)(((byte)(200)))));
-            this.label44.Location = new System.Drawing.Point(7, 80);
+            this.label44.Location = new System.Drawing.Point(6, 69);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(53, 15);
             this.label44.TabIndex = 44;
@@ -1524,19 +1672,13 @@
             this.treeListBand5.Caption = "treeListBand5";
             this.treeListBand5.Name = "treeListBand5";
             // 
-            // salaireBase
-            // 
-            this.salaireBase.Location = new System.Drawing.Point(330, 119);
-            this.salaireBase.Name = "salaireBase";
-            this.salaireBase.Size = new System.Drawing.Size(122, 20);
-            this.salaireBase.TabIndex = 100;
-            // 
             // frmFicheSalarie
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(658, 512);
             this.Controls.Add(this.layoutControl1);
+            this.Cursor = System.Windows.Forms.Cursors.AppStarting;
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -1550,8 +1692,10 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trvSalarie)).EndInit();
             this.plFicheSalarie.ResumeLayout(false);
-            this.plPaie.ResumeLayout(false);
-            this.plPaie.PerformLayout();
+            this.v.ResumeLayout(false);
+            this.v.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateSortie.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateSortie.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFin.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateDeb.Properties.CalendarTimeProperties)).EndInit();
@@ -1675,8 +1819,7 @@
         private DevExpress.XtraEditors.SeparatorControl separatorControl8;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel plPaie;
-        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Panel v;
         private System.Windows.Forms.ComboBox cbxUnite;
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.Label label51;
@@ -1690,7 +1833,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private DevExpress.XtraEditors.DateEdit dateFin;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Label label27;
         private DevExpress.XtraEditors.DateEdit dateDeb;
         private System.Windows.Forms.Label label42;
         private DevExpress.XtraEditors.SeparatorControl separatorControl10;
@@ -1727,6 +1869,21 @@
         private System.Windows.Forms.ComboBox cbxBultMod;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox salaireHoraireValue;
-        private System.Windows.Forms.TextBox salaireBase;
+        private System.Windows.Forms.TextBox txtsalaireBase;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.TextBox txtPrimes;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox txtIrpp;
+        private System.Windows.Forms.TextBox txtCnss;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.TextBox txtTotalImposable;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.TextBox txtTotalBrute;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.TextBox txtNetPayer;
+        private System.Windows.Forms.Label label58;
+        private DevExpress.XtraEditors.DateEdit dateSortie;
+        private System.Windows.Forms.Button btncalculer;
     }
 }

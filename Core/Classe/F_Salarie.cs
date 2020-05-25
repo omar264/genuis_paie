@@ -68,7 +68,11 @@ namespace Core.Classe
         public string DP_Code { get; set; }
         public string SE_Code { get; set; }
         public string UN_Code { get; set; }
-
+        public DateTime? SA_DateSortie { get; set; }
+        public decimal? salaireBase { get; set; }
+        public decimal? primes { get; set; }
+        public decimal? retenueCnss { get; set; }
+        public decimal? retenueIrpp { get; set; }
 
     }
 }

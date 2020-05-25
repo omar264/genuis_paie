@@ -221,6 +221,7 @@
             this.tsbImprimer.Name = "tsbImprimer";
             this.tsbImprimer.Size = new System.Drawing.Size(76, 35);
             this.tsbImprimer.Text = "Imprimer";
+            this.tsbImprimer.Click += new System.EventHandler(this.tsbImprimer_Click);
             // 
             // toolStripSeparator2
             // 

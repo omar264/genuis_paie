@@ -199,5 +199,10 @@ namespace GENIUSPAIE.Salaries
         {
             Close();
         }
+
+        private void tsbImprimer_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -17,7 +17,7 @@
         public virtual DbSet<F_Service> F_Service { get; set; }
         public virtual DbSet<F_Unite> F_Unite { get; set; }
         public virtual DbSet<F_Enfant> F_Enfant { get; set; }
-
+        public virtual DbSet<F_BullteinPaie> F_BullteinPaie { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<F_Salarie>()
