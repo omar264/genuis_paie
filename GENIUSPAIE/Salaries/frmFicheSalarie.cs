@@ -73,6 +73,7 @@ namespace GENIUSPAIE.Salaries
                 txtPrimes.Text = _salarie.primes.ToString();
                 txtCnss.Text = _salarie.retenueCnss.ToString();
                 txtIrpp.Text = _salarie.retenueIrpp.ToString();
+                txtCss.Text = _salarie.Css.ToString();
             }
             catch (Exception ex)
             {
@@ -89,7 +90,7 @@ namespace GENIUSPAIE.Salaries
             try
             {
                 int departement = 0;
-               
+
 
                 F_Salarie salarie = new F_Salarie()
                 {
@@ -119,10 +120,11 @@ namespace GENIUSPAIE.Salaries
                     UN_Code = cbUnité.SelectedIndex == -1 ? "" : Convert.ToString(cbUnité.SelectedValue),
                     cbMarq = _mode == Mode.Modifier ? _salarie.cbMarq : 0,
                     SalaireDeBase = Convert.ToDecimal(txtsalaireBase.Text),
-                    primes = Convert.ToDecimal(txtPrimes.Text) ,
+                    primes = Convert.ToDecimal(txtPrimes.Text),
                     /*SA_DateSortie =Convert.ToDateTime(dateSortie.EditValue),*/
-                    retenueCnss= Convert.ToDecimal(txtPrimes.Text),
+                    retenueCnss = Convert.ToDecimal(txtPrimes.Text),
                     retenueIrpp = Convert.ToDecimal(txtIrpp.Text),
+                    Css = Convert.ToDecimal(txtCss.Text),
 
 
 
@@ -143,6 +145,7 @@ namespace GENIUSPAIE.Salaries
                     db.SaveChanges();
                     Close();
                 };
+              
             }
             catch (Exception ex)
             {
@@ -336,19 +339,74 @@ listeUN[i].UN_Code));
                         PdfWriter.GetInstance(doc, new FileStream(sfd.FileName, FileMode.Create));
                         doc.Open();
                         doc.Add(new iTextSharp.text.Paragraph( "                           Bulltein de paie" ));
-                        doc.Add(new iTextSharp.text.Paragraph("STE:"));
-                        doc.Add(new iTextSharp.text.Paragraph("CNSS:"));
-                        doc.Add(new iTextSharp.text.Paragraph(txtMatricule.Text + " " + txtNom.Text + " " + txtPrénom.Text));
+                        doc.Add(new iTextSharp.text.Paragraph("Date d'impression"+dateSortie.EditValue));
+
+                        doc.Add(new iTextSharp.text.Paragraph("Période de paie"+dateDeb.EditValue+dateFin.EditValue));
+
+                        doc.Add(new iTextSharp.text.Paragraph("STE:"+txtSoc.Text));
+                        doc.Add(new iTextSharp.text.Paragraph("CNSS:"+txtCnssSoc.Text));
+                        doc.Add(new iTextSharp.text.Paragraph("Matricule"+txtMatricule.Text ));
+                          doc.Add(new iTextSharp.text.Paragraph( txtNom.Text + " " + txtPrénom.Text));
                         doc.Add(new iTextSharp.text.Paragraph("cnss : " + txtNumSecS.Text ));
-                        doc.Add(new iTextSharp.text.Paragraph(cbSituationF.Text));
+                        doc.Add(new iTextSharp.text.Paragraph("Situation familiale : "+cbSituationF.Text));
                         doc.Add(new iTextSharp.text.Paragraph("salaire de base : " + txtsalaireBase.Text));
-                        doc.Add(new iTextSharp.text.Paragraph("retnue cnss : " +txtCnss));
-                        doc.Add(new iTextSharp.text.Paragraph("retnue irrp : " + txtIrpp));
-                        doc.Add(new iTextSharp.text.Paragraph("total brute : " + txtTotalBrute));
-                        doc.Add(new iTextSharp.text.Paragraph("total imposable: " + txtTotalImposable));
+                        doc.Add(new iTextSharp.text.Paragraph("Primes : " + txtPrimes.Text));
+                       doc.Add(new iTextSharp.text.Paragraph("total brute : " + txtTotalBrute.Text));
+                        doc.Add(new iTextSharp.text.Paragraph("retnue cnss : " +txtCnss.Text));
+                        doc.Add(new iTextSharp.text.Paragraph("total imposable: " + txtTotalImposable.Text));
+                        doc.Add(new iTextSharp.text.Paragraph("retnue irrp : " + txtIrpp.Text));
+                        doc.Add(new iTextSharp.text.Paragraph("css : " + txtCss.Text));
 
-                        doc.Add(new iTextSharp.text.Paragraph("net à payer : " + calculerSalaireMensuel(salaireHoraireValue.Text)));
+                        doc.Add(new iTextSharp.text.Paragraph("net à payer :" + txtNetPayer.Text));
+                        //doc.Add(new iTextSharp.text.Paragraph("net à payer : " + calculerSalaireMensuel(salaireHoraireValue.Text)));
+                        PdfPTable table = new PdfPTable(6);
+                        PdfPCell cell = new PdfPCell(new Phrase("bulltein de paie"));
+                         cell.Colspan = 10;
 
+                         cell.HorizontalAlignment = 3;
+
+                         table.AddCell(cell);
+
+                         table.AddCell("salaire de base : " + txtsalaireBase.Text);
+
+                         table.AddCell("Primes : " + txtPrimes.Text);
+
+                         table.AddCell("total brute : " + txtTotalBrute.Text);
+
+                         table.AddCell("retnue cnss : " + txtCnss.Text);
+
+                         table.AddCell("total imposable: " + txtTotalImposable.Text);
+
+                         table.AddCell("retenue irrp : " + txtIrpp.Text);
+                         table.AddCell(new PdfPCell(new Phrase("css : " + txtCss.Text)));
+                        
+                            table.AddCell(new PdfPCell(new Phrase("Cell 2")));
+                         table.AddCell(new PdfPCell(new Phrase("Cell 3")));
+                         table.AddCell(new PdfPCell(new Phrase("Cell 4")));
+
+                        
+                        table.AddCell(new PdfPCell(new Phrase("RepGroup Logo")) { Rowspan = 9 });
+                        table.AddCell(new PdfPCell(new Phrase("CID")));
+                        table.AddCell(new PdfPCell(new Phrase("CID-Val")));
+                        table.AddCell(new PdfPCell(new Phrase("Ven Logo")) { Rowspan = 9, Colspan = 2 });
+                        table.AddCell(new PdfPCell(new Phrase("CPO")));
+                        table.AddCell(new PdfPCell(new Phrase("CPO-Val")));
+                        table.AddCell(new PdfPCell(new Phrase("Order Status")));
+                        table.AddCell(new PdfPCell(new Phrase("Confirmed")));
+                        table.AddCell(new PdfPCell(new Phrase("Order Date")));
+                        table.AddCell(new PdfPCell(new Phrase("10/02/2013")));
+                        table.AddCell(new PdfPCell(new Phrase("Ship Date")));
+                        table.AddCell(new PdfPCell(new Phrase("12/01/2013")));
+                        table.AddCell(new PdfPCell(new Phrase("Back Orders")));
+                        table.AddCell(new PdfPCell(new Phrase("Accepted")));
+                        table.AddCell(new PdfPCell(new Phrase("Ship Via")));
+                        table.AddCell(new PdfPCell(new Phrase("Best Way")));
+                        table.AddCell(new PdfPCell(new Phrase("Terms")));
+                        table.AddCell(new PdfPCell(new Phrase("CC")));
+                        table.CompleteRow();
+
+
+                        doc.Add(table);
 
                     }
                     catch (Exception ex)
@@ -367,16 +425,104 @@ listeUN[i].UN_Code));
         {
             try
             {
-                decimal c = Convert.ToDecimal(txtTotalBrute.Text);
+                double a, b, c, d, e, f, h, i, E36, E37='0',k, l,taux,E38='0',impot,j;
+                a = double.Parse(txtsalaireBase.Text);
+                b = double.Parse(txtPrimes.Text);
+                k = double.Parse(txtNombreJ.Text);
+                c = ((a + b) * k) / 26;
+                txtTotalBrute.Text = c.ToString("0.000");
+                // d= double.Parse(txtCnss.Text);
+                txtCnss.Text = (c * 0.0918).ToString("0.000");
+                e = double.Parse(txtTotalBrute.Text);
+                d = double.Parse(txtCnss.Text);
+                f = e - d;
+                txtTotalImposable.Text = f.ToString("0.000");
+                h = double.Parse(txtTotalImposable.Text);
+                taux = h * 12*0.1;
+
+                   
+                if (taux > 2000)
+                {
+                    E36 = h * 12 - 2000;
+
+                }
+                else
+                {
+
+                    E36 = h * 12 - taux;
+                }
+                if (cbSituationF.SelectedItem.ToString() == "C")
+                {
+                    E37 = E36;
+                }
+                if (cbSituationF.SelectedItem.ToString() == "M")
+                {
+                    E37 = E36-150;
+                  
+                }
+                if (cbSituationF.SelectedItem.ToString() == "M+1")
+                {
+                    E37 = E36 - 240;
+                    
+                }
+                if (cbSituationF.SelectedItem.ToString() == "M+2")
+                {
+                    E37 = E36 - 315;
+                    
+                }
+                if (cbSituationF.SelectedItem.ToString() == "M+3")
+                {
+                    E37 = E36 - 375;
+                    ;
+                }
+                if (cbSituationF.SelectedItem.ToString() == "M+4")
+                {
+                    E37 = E36 - 420;
+                    
+                }
+                E38 = E37;
+                if (E37<5000)
+                {
+                    txtIrpp.Text = "0";
+                }
+                if (5000<E37 && E37<20000)
+                {
+                    txtIrpp.Text = (((E37 - 5000) * 0.26) / 12).ToString();
+                }
+                if (20000 < E37 && E37 < 30000)
+                {
+                    txtIrpp.Text = ((((E37 - 20000) * 0.28)+3900) / 12).ToString();
+                }
+                if (30000 < E37 && E37 < 50000)
+                {
+                    txtIrpp.Text = ((((E37 - 30000) * 0.32) + 6700) / 12).ToString();
+                }
+                if (E37 > 50000)
+                {
+                    txtIrpp.Text = ((((E37 - 30000) * 0.32) + 6700) / 12).ToString();
+                }
+
+ 
+                txtCss.Text = ((E38 * 0.01) / 12).ToString();
+                i = double.Parse(txtIrpp.Text);
+                j = double.Parse(txtCss.Text);
+                impot =i + j;
+                txtNetPayer.Text = (h - impot).ToString();
+                    //txtIrpp.Text = i.ToString("0.00");
+
+                // j = h - i;
+                // txtNetPayer.Text = j.ToString();
+
+
+                /*decimal c = Convert.ToDecimal(txtTotalBrute.Text);
                 decimal c2 = Convert.ToDecimal(txtCnss.Text);
                 decimal c3 = Convert.ToDecimal(txtIrpp.Text);
 
                 // txtTotalBrute.Text = txtsalaireBase.Text + txtCnss.Text;
-                txtTotalBrute.Text = txtsalaireBase.Text + txtPrimes.Text;
 
                 decimal TotalImposable = decimal.Parse(txtTotalImposable.Text);
                 TotalImposable = c + c2;
-              //  txtNetPayer.Text = txtTotalImposable.Text-c3;
+                // txtNetPayer.Text = txtTotalImposable.Text-c3;*/
 
             }
             catch (Exception ex)
@@ -389,6 +535,7 @@ listeUN[i].UN_Code));
             try
             {
 
+                txtTotalBrute.Text = txtsalaireBase.Text + txtPrimes.Text;
 
                 decimal salaireHoraireDecimal = decimal.Parse(salaireHoraire);
                 decimal salaireMensuleDecimal = salaireHoraireDecimal * 8 * 20;

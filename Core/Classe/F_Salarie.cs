@@ -73,6 +73,7 @@ namespace Core.Classe
         public decimal? primes { get; set; }
         public decimal? retenueCnss { get; set; }
         public decimal? retenueIrpp { get; set; }
+        public decimal? Css { get; set; }
 
     }
 }

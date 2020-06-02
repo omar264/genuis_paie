@@ -16,14 +16,14 @@ namespace GENIUSPAIE {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CrystalReport3 : ReportClass {
+    public class CrystalReport7 : ReportClass {
         
-        public CrystalReport3() {
+        public CrystalReport7() {
         }
         
         public override string ResourceName {
             get {
-                return "CrystalReport3.rpt";
+                return "CrystalReport7.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace GENIUSPAIE {
         
         public override string FullResourceName {
             get {
-                return "GENIUSPAIE.CrystalReport3.rpt";
+                return "GENIUSPAIE.CrystalReport7.rpt";
             }
             set {
                 // Do nothing
@@ -66,7 +66,7 @@ namespace GENIUSPAIE {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupHeaderSection1 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
             get {
                 return this.ReportDefinition.Sections[2];
             }
@@ -74,7 +74,7 @@ namespace GENIUSPAIE {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section3 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
             get {
                 return this.ReportDefinition.Sections[3];
             }
@@ -82,33 +82,17 @@ namespace GENIUSPAIE {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section GroupFooterSection1 {
-            get {
-                return this.ReportDefinition.Sections[4];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
-            get {
-                return this.ReportDefinition.Sections[5];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.CrystalReports.Engine.Section Section5 {
             get {
-                return this.ReportDefinition.Sections[6];
+                return this.ReportDefinition.Sections[4];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCrystalReport3 : Component, ICachedReport {
+    public class CachedCrystalReport7 : Component, ICachedReport {
         
-        public CachedCrystalReport3() {
+        public CachedCrystalReport7() {
         }
         
         [Browsable(false)]
@@ -145,7 +129,7 @@ namespace GENIUSPAIE {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CrystalReport3 rpt = new CrystalReport3();
+            CrystalReport7 rpt = new CrystalReport7();
             rpt.Site = this.Site;
             return rpt;
         }
